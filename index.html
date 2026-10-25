@@ -101,6 +101,23 @@ dialog::backdrop { background: var(--scrim) }
 .links { display: flex; gap: 10px; flex-wrap: wrap }
 .ghost { font: 600 1rem var(--f-body); color: var(--stage-ink); background: transparent; border: 1px solid rgba(255,255,255,.35); border-radius: 999px;
   padding: 10px 18px; text-decoration: none; display: inline-flex; align-items: center }
+.deploy .wrap { padding-block: 24px 8px; display: grid; gap: 14px }
+.deploy h2 { font-size: 1.5rem; margin: 0 }
+.deploy h3 { font-size: 1.05rem; margin: 6px 0 0 }
+.deploy p, .deploy li { color: var(--muted); max-width: 75ch }
+.deploy ol, .deploy ul { margin: 0; padding-left: 1.3em; display: grid; gap: 6px }
+.deploy b, .deploy strong { color: var(--ink, inherit) }
+.deploy code { font-size: .92rem; font-weight: 600; background: var(--chip); color: var(--chip-ink); padding: 1px 6px; border-radius: 6px }
+.deploy pre { margin: 0; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; overflow-x: auto; font-size: .9rem }
+.deploy .dl { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px }
+.deploy .dl a.btn { display: inline-block; background: var(--teal); color: #fff; font-weight: 700; text-decoration: none; padding: 10px 18px; border-radius: 999px }
+.deploy .dl a.btn:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px }
+.deploy .dl small { color: var(--muted) }
+.deploy .tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px }
+.deploy table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: .93rem }
+.deploy th, .deploy td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--line); vertical-align: top }
+.deploy tr:last-child td { border-bottom: 0 }
+.deploy th { font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted) }
 .logins .wrap { padding-block: 8px 32px; display: grid; gap: 12px }
 .logins h2 { font-size: 1.5rem; margin: 0 }
 .logins p { margin: 0; color: var(--muted); max-width: 70ch }
@@ -186,6 +203,7 @@ dialog::backdrop { background: var(--scrim) }
     <p>Start with a new hire's journey: Ravi goes from his first day to production ready. Then pick any short below to see one feature in about a minute.</p>
     <div class="links">
       <button type="button" class="start" id="start">Watch a new hire's journey</button>
+      <a class="ghost" href="#deploy">Deploy on a server</a>
       <a class="ghost" href="#logins">Test logins</a>
       <a class="ghost" href="#status">What's done and pending</a>
       <a class="ghost" href="#needed">What's needed to finish</a>
@@ -209,6 +227,63 @@ dialog::backdrop { background: var(--scrim) }
   });
 })();
 </script>
+
+<section class="deploy" id="deploy" aria-labelledby="deploy-title">
+  <div class="wrap">
+    <h2 id="deploy-title">Deploy the LMS on a company server</h2>
+    <p>A ready-to-run package for a Windows server (Windows 11 or Windows Server) that already has <b>Java 21</b>, <b>Node.js</b> and <b>PostgreSQL</b>. Nothing is built on the server: it takes about two minutes.</p>
+    <div class="dl">
+      <a class="btn" href="https://github.com/asprcmdevelopers-repo/ASPRCM-LMS/releases/download/deploy-2026-10-25/ASPRCM-LMS.zip">Download ASPRCM-LMS.zip</a>
+      <small>531 MB. Private download: sign in to GitHub with an account that has access to the ASPRCM-LMS repository. It contains the full portal, its database and course files.</small>
+    </div>
+
+    <h3>Before you start</h3>
+    <ul>
+      <li>Have the password of the PostgreSQL <code>postgres</code> user on the server. It is asked once and not saved.</li>
+      <li>Copy the zip to the server (shared folder or USB drive).</li>
+    </ul>
+
+    <h3>Steps</h3>
+    <ol>
+      <li>Right-click the zip, choose <b>Properties</b>, tick <b>Unblock</b> if it is shown, then <b>OK</b>.</li>
+      <li>Unzip it to a short path, for example <code>C:\ASPRCM-LMS</code>.</li>
+      <li>Optional: open <code>config.env</code> in Notepad to choose ports (<code>FRONTEND_PORT</code>, <code>BACKEND_PORT</code>). Left empty, the portal uses 3000 and 8080, or the next free ports.</li>
+      <li>Right-click <code>deploy.cmd</code> and choose <b>Run as administrator</b>.</li>
+      <li>Type the PostgreSQL <code>postgres</code> password when asked.</li>
+      <li>Wait for the last line, then open that address from any office PC and sign in with a test login below:
+        <pre>READY:  http://&lt;SERVER-NAME&gt;:&lt;port&gt;</pre></li>
+    </ol>
+
+    <h3>What deploy.cmd does</h3>
+    <ul>
+      <li>Finds Java, Node.js and PostgreSQL on the server.</li>
+      <li>Creates the database and loads all courses, people and settings.</li>
+      <li>Makes new database passwords and a login secret for this server only.</li>
+      <li>Picks the ports, opens the portal port in the Windows firewall, and starts the portal by itself after a restart.</li>
+    </ul>
+
+    <h3>Everyday use</h3>
+    <ul>
+      <li><code>stop.cmd</code> stops the portal, <code>start.cmd</code> starts it. Logs are in <code>run\logs</code>.</li>
+      <li>Running <code>deploy.cmd</code> again keeps the existing data. Only <code>deploy.cmd -ResetDatabase</code> replaces the database (it deletes data entered on the server).</li>
+    </ul>
+
+    <h3>If something goes wrong</h3>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Message</th><th>What to do</th></tr></thead>
+        <tbody>
+          <tr><td>Java 21, Node.js or psql.exe not found</td><td>Set <code>JAVA_EXE</code>, <code>NODE_EXE</code> or <code>PG_BIN</code> in <code>config.env</code> to the full path, then run <code>deploy.cmd</code> again.</td></tr>
+          <tr><td>Port … is already in use</td><td>Leave the port empty in <code>config.env</code>, or choose another.</td></tr>
+          <tr><td>PostgreSQL password error</td><td>Check the <code>postgres</code> password, or <code>PG_HOST</code> / <code>PG_PORT</code> in <code>config.env</code>.</td></tr>
+          <tr><td>Not ready yet</td><td>Look at the last lines of <code>run\logs\backend.log</code> and <code>run\logs\frontend-err.log</code>.</td></tr>
+          <tr><td>Opens on the server but not from other PCs</td><td>Run <code>deploy.cmd</code> again with <b>Run as administrator</b>, so the firewall port is opened.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Optional later: a friendly address such as http://lms.company.local, using IIS as a reverse proxy (free URL Rewrite and ARR modules) to the portal port. Change the shared test password before real users sign in.</p>
+  </div>
+</section>
 
 <section class="logins" id="logins" aria-labelledby="logins-title">
   <div class="wrap">
