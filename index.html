@@ -203,7 +203,7 @@ dialog::backdrop { background: var(--scrim) }
     <p>Start with a new hire's journey: Ravi goes from his first day to production ready. Then pick any short below to see one feature in about a minute.</p>
     <div class="links">
       <button type="button" class="start" id="start">Watch a new hire's journey</button>
-      <a class="ghost" href="#deploy">Deploy on a server</a>
+      <a class="ghost" href="#deploy">Update the portal</a>
       <a class="ghost" href="#logins">Test logins</a>
       <a class="ghost" href="#status">What's done and pending</a>
       <a class="ghost" href="#needed">What's needed to finish</a>
@@ -230,42 +230,34 @@ dialog::backdrop { background: var(--scrim) }
 
 <section class="deploy" id="deploy" aria-labelledby="deploy-title">
   <div class="wrap">
-    <h2 id="deploy-title">Deploy the LMS on a company server</h2>
-    <p>A ready-to-run package for a Windows server (Windows 11 or Windows Server) that already has <b>Java 21</b>, <b>Node.js</b> and <b>PostgreSQL</b>. Nothing is built on the server: it takes about two minutes.</p>
+    <h2 id="deploy-title">Update the portal on the company server</h2>
+    <p>For a portal that is already running on the server. The update installs the latest version and keeps everything already there: the database and all data entered in the portal, uploaded files, the address and port, and the passwords. No PostgreSQL password is needed. It takes about one to two minutes, during which the portal is unavailable.</p>
     <div class="dl">
-      <a class="btn" href="https://github.com/asprcmdevelopers-repo/ASPRCM-LMS/releases/download/deploy-2026-10-25/ASPRCM-LMS.zip">Download ASPRCM-LMS.zip</a>
-      <small>531 MB. Private download: sign in to GitHub with an account that has access to the ASPRCM-LMS repository. It contains the full portal, its database and course files.</small>
+      <a class="btn" href="https://github.com/asprcmdevelopers-repo/ASPRCM-LMS/releases/download/update-2026-10-26/ASPRCM-LMS-update.zip">Download ASPRCM-LMS-update.zip</a>
+      <small>123 MB. Private download: sign in to GitHub with an account that has access to the ASPRCM-LMS repository.</small>
     </div>
 
-    <h3>Before you start</h3>
+    <h3>What this update adds</h3>
     <ul>
-      <li>Have the password of the PostgreSQL <code>postgres</code> user on the server. It is asked once and not saved.</li>
-      <li>Copy the zip to the server (shared folder or USB drive).</li>
+      <li><b>Learning admin &gt; Enrollments:</b> enrol many people at once (tick names, a team or a department) and remove enrolments, one or many, each recorded in the Audit Log.</li>
+      <li><b>Compliance &gt; Audit Log</b> and compliance notifications show India time (IST).</li>
     </ul>
 
     <h3>Steps</h3>
     <ol>
-      <li>Right-click the zip, choose <b>Properties</b>, tick <b>Unblock</b> if it is shown, then <b>OK</b>.</li>
-      <li>Unzip it to a short path, for example <code>C:\ASPRCM-LMS</code>.</li>
-      <li>Optional: open <code>config.env</code> in Notepad to choose ports (<code>FRONTEND_PORT</code>, <code>BACKEND_PORT</code>). Left empty, the portal uses 3000 and 8080, or the next free ports.</li>
-      <li>Right-click <code>deploy.cmd</code> and choose <b>Run as administrator</b>.</li>
-      <li>Type the PostgreSQL <code>postgres</code> password when asked.</li>
-      <li>Wait for the last line, then open that address from any office PC and sign in with a test login below:
-        <pre>READY:  http://&lt;SERVER-NAME&gt;:&lt;port&gt;</pre></li>
+      <li>Copy the zip to the server. Right-click it, choose <b>Properties</b>, tick <b>Unblock</b> if it is shown, then <b>OK</b>.</li>
+      <li>Unzip it to a <b>new</b> folder, for example <code>C:\ASPRCM-LMS-update</code> (not inside the folder where the portal is installed).</li>
+      <li>Right-click <code>update.cmd</code> and choose <b>Run as administrator</b>.</li>
+      <li>It finds the installed portal in <code>C:\ASPRCM-LMS</code>. If the portal is installed somewhere else, it asks for that folder: type the folder that holds <code>deploy.cmd</code>.</li>
+      <li>Wait for <code>READY</code> and then <code>Updated.</code> Open the portal and press <b>Ctrl+F5</b> once so the browser loads the new pages.</li>
     </ol>
 
-    <h3>What deploy.cmd does</h3>
+    <h3>What update.cmd does</h3>
     <ul>
-      <li>Finds Java, Node.js and PostgreSQL on the server.</li>
-      <li>Creates the database and loads all courses, people and settings.</li>
-      <li>Makes new database passwords and a login secret for this server only.</li>
-      <li>Picks the ports, opens the portal port in the Windows firewall, and starts the portal by itself after a restart.</li>
-    </ul>
-
-    <h3>Everyday use</h3>
-    <ul>
-      <li><code>stop.cmd</code> stops the portal, <code>start.cmd</code> starts it. Logs are in <code>run\logs</code>.</li>
-      <li>Running <code>deploy.cmd</code> again keeps the existing data. Only <code>deploy.cmd -ResetDatabase</code> replaces the database (it deletes data entered on the server).</li>
+      <li>Stops the portal.</li>
+      <li>Backs up the database and the current version to <code>backups\&lt;date-time&gt;</code> inside the portal folder.</li>
+      <li>Installs the new version and starts it on the same address and port.</li>
+      <li>If the new version does not start, it puts the previous version back and starts it again, so the portal is not left down.</li>
     </ul>
 
     <h3>If something goes wrong</h3>
@@ -273,17 +265,17 @@ dialog::backdrop { background: var(--scrim) }
       <table>
         <thead><tr><th>Message</th><th>What to do</th></tr></thead>
         <tbody>
-          <tr><td>Java 21, Node.js or psql.exe not found</td><td>Set <code>JAVA_EXE</code>, <code>NODE_EXE</code> or <code>PG_BIN</code> in <code>config.env</code> to the full path, then run <code>deploy.cmd</code> again.</td></tr>
-          <tr><td>Port … is already in use</td><td>Leave the port empty in <code>config.env</code>, or choose another.</td></tr>
-          <tr><td>PostgreSQL password error</td><td>Check the <code>postgres</code> password, or <code>PG_HOST</code> / <code>PG_PORT</code> in <code>config.env</code>.</td></tr>
-          <tr><td>Not ready yet</td><td>Look at the last lines of <code>run\logs\backend.log</code> and <code>run\logs\frontend-err.log</code>.</td></tr>
-          <tr><td>Opens on the server but not from other PCs</td><td>Run <code>deploy.cmd</code> again with <b>Run as administrator</b>, so the firewall port is opened.</td></tr>
+          <tr><td>No deployed portal found</td><td>Type the folder where the portal is installed (the one that holds <code>deploy.cmd</code>).</td></tr>
+          <tr><td>Database backup failed</td><td>Nothing was changed and the portal was started again. Check that PostgreSQL is running, then run <code>update.cmd</code> again.</td></tr>
+          <tr><td>The new version did not start</td><td>The previous version is back and running. Send <code>backups\&lt;date-time&gt;\failed-update-logs\backend.log</code>.</td></tr>
+          <tr><td>New pages do not show</td><td>Press <b>Ctrl+F5</b> in the browser to reload them.</td></tr>
         </tbody>
       </table>
     </div>
-    <p>Optional later: a friendly address such as http://lms.company.local, using IIS as a reverse proxy (free URL Rewrite and ARR modules) to the portal port. Change the shared test password before real users sign in.</p>
+    <p>After a successful update, the update folder can be deleted.</p>
   </div>
 </section>
+
 
 <section class="logins" id="logins" aria-labelledby="logins-title">
   <div class="wrap">
