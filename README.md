@@ -3,3 +3,5 @@
 Open the site: https://asprcmdevelopers-repo.github.io/asprcm-university-walkthrough/
 
 Recorded on the demo system with sample people and courses.
+
+Testing guide: https://asprcmdevelopers-repo.github.io/asprcm-university-walkthrough/testing/
