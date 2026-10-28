@@ -231,17 +231,23 @@ dialog::backdrop { background: var(--scrim) }
 <section class="deploy" id="deploy" aria-labelledby="deploy-title">
   <div class="wrap">
     <h2 id="deploy-title">Update the portal on the company server</h2>
-    <p>For a portal that is already running on the server. The update installs the latest version and keeps everything already there: the database and all data entered in the portal, uploaded files, the address and port, and the passwords. No PostgreSQL password is needed. It takes about one to two minutes, during which the portal is unavailable.</p>
+    <p>For a portal that is already running on the server. The update installs the latest version and keeps everything already there: the database and all data entered in the portal, uploaded files, the address and port, and the passwords. It takes about one to two minutes, during which the portal is unavailable.</p>
     <div class="dl">
-      <a class="btn" href="https://github.com/asprcmdevelopers-repo/ASPRCM-LMS/releases/download/update-2026-10-26/ASPRCM-LMS-update.zip">Download ASPRCM-LMS-update.zip</a>
-      <small>123 MB. Private download: sign in to GitHub with an account that has access to the ASPRCM-LMS repository.</small>
+      <a class="btn" href="https://github.com/asprcmdevelopers-repo/ASPRCM-LMS/releases/download/update-2026-10-28/ASPRCM-LMS-update-2026-10-28.zip">Download ASPRCM-LMS-update-2026-10-28.zip</a>
+      <small>139 MB (28 Oct 2026). Private download: sign in to GitHub with an account that has access to the ASPRCM-LMS repository.</small>
     </div>
 
     <h3>What this update adds</h3>
     <ul>
-      <li><b>Learning admin &gt; Enrollments:</b> enrol many people at once (tick names, a team or a department) and remove enrolments, one or many, each recorded in the Audit Log.</li>
-      <li><b>Compliance &gt; Audit Log</b> and compliance notifications show India time (IST).</li>
+      <li><b>Help &amp; Q&amp;A</b> in every menu: what each screen and field does, with screenshots, and common questions.</li>
+      <li><b>Mandatory courses</b> work as compliance training: a Mandatory badge, a Required list in My Learning, compliance figures count mandatory courses only, and the manager is told when one is overdue.</li>
+      <li>Learners get <b>My Notifications</b> (the bell), <b>My Profile</b> and <b>My Policies</b> (read and acknowledge policies).</li>
+      <li>Many fixes across learning, practice, people, reports and security. The portal is now English only.</li>
     </ul>
+
+    <h3>Once only, before the first update</h3>
+    <p>So the update can back up the database, run this once in a command prompt on the server and type the PostgreSQL (postgres) password when asked. It should answer <code>ALTER ROLE</code>. If <code>psql</code> is not found, use <code>"C:\Program Files\PostgreSQL\17\bin\psql.exe"</code>.</p>
+    <pre><code>psql -U postgres -d asprcmu -c "ALTER ROLE asprcmu_owner BYPASSRLS CREATEROLE;"</code></pre>
 
     <h3>Steps</h3>
     <ol>
