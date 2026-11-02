@@ -234,12 +234,16 @@ dialog::backdrop { background: var(--scrim) }
     <h2 id="deploy-title">Update the portal on the company server</h2>
     <p>For a portal that is already running on the server. The update installs the latest version and keeps everything already there: the database and all data entered in the portal, uploaded files, the address and port, and the passwords. It takes about one to two minutes, during which the portal is unavailable.</p>
     <div class="dl">
-      <a class="btn" href="https://github.com/asprcmdevelopers-repo/ASPRCM-LMS/releases/download/update-2026-10-28b/ASPRCM-LMS-update-2026-10-28b.zip">Download ASPRCM-LMS-update-2026-10-28b.zip</a>
-      <small>139 MB (28 Oct 2026, evening). Private download: sign in to GitHub with an account that has access to the ASPRCM-LMS repository.</small>
+      <a class="btn" href="https://github.com/asprcmdevelopers-repo/ASPRCM-LMS/releases/download/update-2026-11-02/ASPRCM-LMS-update-2026-11-02.zip">Download ASPRCM-LMS-update-2026-11-02.zip</a>
+      <small>139 MB (2 Nov 2026). Private download: sign in to GitHub with an account that has access to the ASPRCM-LMS repository.</small>
     </div>
 
     <h3>What this update adds</h3>
     <ul>
+      <li><b>Pre-assessment</b> is offered on every kind of course and is optional: learners take it or skip it.</li>
+      <li><b>Graded knowledge checks:</b> switch on per course (including quiz slides). Learners get a percentage score from their first answers; it is reported and does not affect passing.</li>
+      <li><b>Course survey:</b> switch on per course. Offered when a learner completes the course, optional, with results and export for the training team.</li>
+      <li><b>Additional departments and teams</b> for people above the Learner role.</li>
       <li><b>Help &amp; Q&amp;A</b> in every menu: what each screen and field does, with screenshots, and common questions.</li>
       <li><b>Mandatory courses</b> work as compliance training: a Mandatory badge, a Required list in My Learning, compliance figures count mandatory courses only, and the manager is told when one is overdue.</li>
       <li>Learners get <b>My Notifications</b> (the bell), <b>My Profile</b> and <b>My Policies</b> (read and acknowledge policies).</li>
@@ -590,8 +594,8 @@ d|Ability to control content access based on:|Courses can also be given to a who
 d|Support for tracking learner progress through each training module.` },
   { title: "2. Assessment and Knowledge Validation", req: "The LMS should support creation and management of assessments throughout the learning journey.", lines: `
 d|Ability to place assessments:
->d|Before training (Pre-Assessment)
->d|During training (Knowledge Checks)
+>d|Before training (Pre-Assessment)|Optional: learners can take it or skip it
+>d|During training (Knowledge Checks)|Can be graded per course, with a percentage score
 >d|After training (Final Assessment)
 d|Ability to create and configure multiple question types, including:
 >d|Multiple Choice Questions (MCQ)
