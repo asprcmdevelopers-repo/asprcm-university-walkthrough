@@ -108,7 +108,8 @@ dialog::backdrop { background: var(--scrim) }
 .deploy ol, .deploy ul { margin: 0; padding-left: 1.3em; display: grid; gap: 6px }
 .deploy b, .deploy strong { color: var(--ink, inherit) }
 .deploy code { font-size: .92rem; font-weight: 600; background: var(--chip); color: var(--chip-ink); padding: 1px 6px; border-radius: 6px }
-.deploy pre { margin: 0; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; overflow-x: auto; font-size: .9rem }
+.deploy li { min-width: 0 }
+.deploy pre { max-width: 100%; white-space: pre-wrap; overflow-wrap: anywhere; margin: 8px 0 0; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; overflow-x: auto; font-size: .9rem }
 .deploy .dl { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px }
 .deploy .dl a.btn { display: inline-block; background: var(--teal); color: #fff; font-weight: 700; text-decoration: none; padding: 10px 18px; border-radius: 999px }
 .deploy .dl a.btn:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px }
@@ -251,18 +252,23 @@ dialog::backdrop { background: var(--scrim) }
       <li>Many fixes across learning, practice, people, reports and security. The portal is now English only.</li>
     </ul>
 
-    <h3>Once only, before the first update</h3>
-    <p>So the update can back up the database, run this once in a command prompt on the server and type the PostgreSQL (postgres) password when asked. It should answer <code>ALTER ROLE</code>. If <code>psql</code> is not found, use <code>"C:\Program Files\PostgreSQL\17\bin\psql.exe"</code>.</p>
-    <pre><code>psql -U postgres -d asprcmu -c "ALTER ROLE asprcmu_owner BYPASSRLS CREATEROLE;"</code></pre>
-
     <h3>Steps</h3>
     <ol>
-      <li>Copy the zip to the server. Right-click it, choose <b>Properties</b>, tick <b>Unblock</b> if it is shown, then <b>OK</b>.</li>
-      <li>Unzip it to a <b>new</b> folder, for example <code>C:\ASPRCM-LMS-update</code> (not inside the folder where the portal is installed).</li>
-      <li>Right-click <code>update.cmd</code> and choose <b>Run as administrator</b>.</li>
-      <li>It finds the installed portal in <code>C:\ASPRCM-LMS</code>. If the portal is installed somewhere else, it asks for that folder: type the folder that holds <code>deploy.cmd</code>.</li>
-      <li>Wait for <code>READY</code> and then <code>Updated.</code> Open the portal and press <b>Ctrl+F5</b> once so the browser loads the new pages.</li>
+      <li>Copy the zip to the server. Right-click it, choose <b>Properties</b>, tick <b>Unblock</b> if it is shown, then click <b>OK</b>.</li>
+      <li>Unzip it to a <b>new</b> folder, for example <code>C:\ASPRCM-LMS-update-1102</code>. Do not reuse a folder from an earlier update, and do not unzip inside the folder where the portal is installed.</li>
+      <li><b>Once only:</b> give the database account its rights. Skip this if it was already done; running it again does no harm. Open <b>PowerShell as Administrator</b> on the server, run this command and type the PostgreSQL <code>postgres</code> password when asked. It should print <code>ALTER ROLE</code>.
+        <pre>&amp; (Get-ChildItem "C:\Program Files\PostgreSQL\*\bin\psql.exe" | Select-Object -Last 1).FullName -h localhost -U postgres -d postgres -c "ALTER ROLE asprcmu_owner BYPASSRLS CREATEROLE;"</pre></li>
+      <li>Open the unzipped folder, then the <code>ASPRCM-LMS-update</code> folder inside it. Right-click <code>update.cmd</code> and choose <b>Run as administrator</b>.</li>
+      <li>It finds the installed portal in <code>C:\ASPRCM-LMS</code> and does not ask for a password. If the portal is installed somewhere else, type the folder that holds <code>deploy.cmd</code>.</li>
+      <li>Wait for <code>READY</code> and then <code>Updated.</code> The first start may take a little longer because it adds new database tables. Open your portal address and press <b>Ctrl+F5</b> once so the browser loads the new pages.</li>
     </ol>
+
+    <h3>Check that it worked</h3>
+    <ul>
+      <li>Open a course and choose <b>Edit content</b>: there is a new <b>Survey</b> tab, and its <b>Settings</b> tab has "Grade the knowledge checks".</li>
+      <li>Go to <b>People &amp; Roles</b>, open <b>Mona Manager</b> with <b>Profile</b>, then <b>Edit</b>: "Additional departments" and "Additional teams" are there.</li>
+      <li>The grading and survey switches are off for every course until you turn them on.</li>
+    </ul>
 
     <h3>What update.cmd does</h3>
     <ul>
@@ -275,12 +281,12 @@ dialog::backdrop { background: var(--scrim) }
     <h3>If something goes wrong</h3>
     <div class="tbl">
       <table>
-        <thead><tr><th>Message</th><th>What to do</th></tr></thead>
+        <thead><tr><th>What you see</th><th>What it means</th><th>What to do</th></tr></thead>
         <tbody>
-          <tr><td>No deployed portal found</td><td>Type the folder where the portal is installed (the one that holds <code>deploy.cmd</code>).</td></tr>
-          <tr><td>Database backup failed</td><td>Nothing was changed and the portal was started again. Check that PostgreSQL is running, then run <code>update.cmd</code> again.</td></tr>
-          <tr><td>The new version did not start</td><td>The previous version is back and running. Send <code>backups\&lt;date-time&gt;\failed-update-logs\backend.log</code>.</td></tr>
-          <tr><td>New pages do not show</td><td>Press <b>Ctrl+F5</b> in the browser to reload them.</td></tr>
+          <tr><td>Database backup failed</td><td>Nothing was changed and the portal started again</td><td>Run step 3, then run <code>update.cmd</code> again.</td></tr>
+          <tr><td>The new version did not start</td><td>The previous version is back and running</td><td>Send <code>backups\&lt;date-time&gt;\failed-update-logs\backend.log</code> from the portal folder.</td></tr>
+          <tr><td>No deployed portal found</td><td>It could not find the portal folder</td><td>Type the folder where the portal is installed (the one that holds <code>deploy.cmd</code>).</td></tr>
+          <tr><td>New pages do not show</td><td>The browser is showing old pages</td><td>Press <b>Ctrl+F5</b>.</td></tr>
         </tbody>
       </table>
     </div>
