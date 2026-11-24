@@ -235,12 +235,16 @@ dialog::backdrop { background: var(--scrim) }
     <h2 id="deploy-title">Update the portal on the company server</h2>
     <p>For a portal that is already running on the server. The update installs the latest version and keeps everything already there: the database and all data entered in the portal, uploaded files, the address and port, and the passwords. It takes about one to two minutes, during which the portal is unavailable.</p>
     <div class="dl">
-      <a class="btn" href="https://github.com/asprcmdevelopers-repo/ASPRCM-LMS/releases/download/update-2026-11-21/ASPRCM-LMS-update-2026-11-21.zip">Download ASPRCM-LMS-update-2026-11-21.zip</a>
-      <small>140 MB (21 Nov 2026). Private download: sign in to GitHub with an account that has access to the ASPRCM-LMS repository.</small>
+      <a class="btn" href="https://github.com/asprcmdevelopers-repo/ASPRCM-LMS/releases/download/update-2026-11-24/ASPRCM-LMS-update-2026-11-24.zip">Download ASPRCM-LMS-update-2026-11-24.zip</a>
+      <small>140 MB (24 Nov 2026). Private download: sign in to GitHub with an account that has access to the ASPRCM-LMS repository.</small>
     </div>
 
     <h3>What this update adds</h3>
     <ul>
+      <li><b>PeopleHub employee sync</b>: every active employee gets an account (Manager when PeopleHub names them as someone's manager), leavers are disabled, details stay up to date, and each sync shows exactly who changed. New accounts start with <b>temp@123</b> and must change it at first sign-in. After installing, follow "After the update: set up PeopleHub" in README-UPDATE.txt inside the zip.</li>
+      <li><b>Email sending switch</b>: Off (default, nothing is sent), Test (everything goes to one address) or Live, with sample emails and Cancel queued emails.</li>
+      <li><b>Microsoft sign-in settings</b>: paste the values from IT, test, then switch on (needs an https address for the portal).</li>
+      <li><b>People &amp; Roles</b>: filters, paste employee codes, select all, add to or remove from a team; people can be in several teams.</li>
       <li><b>Command Center</b> (new menu item): client process updates by client, LOB and payer, sent to the right teams, with "I have read this", reminders, a "Who has read" report and Excel import of the update tracker.</li>
       <li><b>Weekly Courses</b>: a short lesson, test and survey every week, which can cover Command Center updates, with readiness (Ready, At risk, Not ready) for managers.</li>
       <li><b>After a server restart</b> the portal waits for the database to be ready, instead of stopping.</li>
