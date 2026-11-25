@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -148,14 +148,14 @@ dialog::backdrop { background: var(--scrim) }
 .area summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 14px 16px }
 .area summary::-webkit-details-marker { display: none }
 .area summary::before { content: "+"; font: 600 1.1rem var(--f-mono); color: var(--muted); width: 1ch }
-.area[open] summary::before { content: "−" }
+.area[open] summary::before { content: "âˆ’" }
 .area summary h3 { font-size: 1.05rem; flex: 1 1 260px; min-width: 0 }
 .area-body { padding: 0 16px 16px; display: grid; gap: 10px }
 .area-body .req { margin: 0; color: var(--muted); font-size: .92rem }
 .lines { list-style: none; margin: 0; padding: 0; display: grid }
 .lines li { display: flex; gap: 12px; justify-content: space-between; align-items: baseline; padding: 7px 0; border-top: 1px solid var(--line); font-size: .94rem }
 .lines li.sub { padding-left: 22px }
-.lines li.sub .txt::before { content: "–"; color: var(--muted); margin-left: -14px; margin-right: 6px }
+.lines li.sub .txt::before { content: "â€“"; color: var(--muted); margin-left: -14px; margin-right: 6px }
 .lines .txt { flex: 1 1 auto; min-width: 0 }
 .lines .note { display: block; color: var(--muted); font-size: .82rem }
 .lines .note b { font-weight: 700 } .lines .note.done b { color: var(--ok) } .lines .note.pending b { color: var(--pend) } .lines .note.why b { color: var(--ink) }
@@ -235,7 +235,7 @@ dialog::backdrop { background: var(--scrim) }
     <h2 id="deploy-title">Update the portal on the company server</h2>
     <p>For a portal that is already running on the server. The update installs the latest version and keeps everything already there: the database and all data entered in the portal, uploaded files, the address and port, and the passwords. It takes about one to two minutes, during which the portal is unavailable.</p>
     <div class="dl">
-      <a class="btn" href="https://github.com/asprcmdevelopers-repo/ASPRCM-LMS/releases/download/update-2026-11-25/ASPRCM-LMS-update-2026-11-25.zip">Download ASPRCM-LMS-update-2026-11-25.zip</a>
+      <a class="btn" href="https://github.com/asprcmdevelopers-repo/ASPRCM-LMS/releases/download/update-2026-11-25b/ASPRCM-LMS-update-2026-11-25b.zip">Download ASPRCM-LMS-update-2026-11-25b.zip</a>
       <small>140 MB (25 Nov 2026). Private download: sign in to GitHub with an account that has access to the ASPRCM-LMS repository.</small>
     </div>
 
@@ -346,7 +346,7 @@ dialog::backdrop { background: var(--scrim) }
     </div>
     <div class="need-grid">
       <article class="need">
-        <div class="need-top"><h3>1. An AI service for text</h3><span class="tag paid">Paid · usage based</span></div>
+        <div class="need-top"><h3>1. An AI service for text</h3><span class="tag paid">Paid Â· usage based</span></div>
         <p class="lead">This one service completes most of the pending lines.</p>
         <h4>It completes</h4>
         <ul>
@@ -364,7 +364,7 @@ dialog::backdrop { background: var(--scrim) }
         <p class="who-line"><b>Who:</b> management (budget and approval), IT (account and key)</p>
       </article>
       <article class="need">
-        <div class="need-top"><h3>2. An AI image service</h3><span class="tag paid">Paid · per picture</span></div>
+        <div class="need-top"><h3>2. An AI image service</h3><span class="tag paid">Paid Â· per picture</span></div>
         <p class="lead">Only needed if pictures should be drawn by AI.</p>
         <h4>It completes</h4>
         <ul>
@@ -379,7 +379,7 @@ dialog::backdrop { background: var(--scrim) }
         <p class="free-alt">Without it, admins add their own pictures, as they can today.</p>
       </article>
       <article class="need">
-        <div class="need-top"><h3>3. A paid voice service</h3><span class="tag paid">Paid · per minute of audio</span></div>
+        <div class="need-top"><h3>3. A paid voice service</h3><span class="tag paid">Paid Â· per minute of audio</span></div>
         <p class="lead">Only needed if the free voices are not good enough.</p>
         <h4>It completes</h4>
         <ul>
@@ -404,26 +404,26 @@ dialog::backdrop { background: var(--scrim) }
         <h4>It needs</h4>
         <ul>
           <li>"English (India)" speech voices added in Windows Settings on the server; they then appear in the voice list by themselves</li>
-          <li>The company's Microsoft 365 or SMTP mail settings and a sender mailbox, entered in Admin › Email</li>
+          <li>The company's Microsoft 365 or SMTP mail settings and a sender mailbox, entered in Admin â€º Email</li>
         </ul>
         <p class="who-line"><b>Who:</b> IT</p>
       </article>
     </div>
     <div class="costs">
       <h3>Tools available and what they cost</h3>
-      <p class="cnote">Prices in US dollars, pay as you go, as published by each provider in October 2026. ₹ figures use ₹88 = US$1; check the current rate. Taxes (GST) are extra. Prices marked * come from recent third-party listings because the provider's page did not show the figure; confirm them on the provider's site before buying.</p>
+      <p class="cnote">Prices in US dollars, pay as you go, as published by each provider in October 2026. â‚¹ figures use â‚¹88 = US$1; check the current rate. Taxes (GST) are extra. Prices marked * come from recent third-party listings because the provider's page did not show the figure; confirm them on the provider's site before buying.</p>
       <div class="tbl"><table>
         <thead><tr><th>For</th><th>Tool</th><th>Price</th><th>Notes</th></tr></thead>
         <tbody>
-          <tr><td rowspan="3">AI text (item 1)</td><td><b>Anthropic Claude Sonnet 5.5</b> <span class="rec">Recommended</span></td><td>$2 in, $10 out per million tokens (a token is about ¾ of a word)</td><td>Strong at reading training documents and writing questions; 50% off for overnight batch jobs</td></tr>
+          <tr><td rowspan="3">AI text (item 1)</td><td><b>Anthropic Claude Sonnet 5.5</b> <span class="rec">Recommended</span></td><td>$2 in, $10 out per million tokens (a token is about Â¾ of a word)</td><td>Strong at reading training documents and writing questions; 50% off for overnight batch jobs</td></tr>
           <tr><td>Anthropic Claude Haiku 5.5</td><td>$0.10 in, $0.50 out per million tokens</td><td>Cheapest; good for short poster text</td></tr>
           <tr><td>OpenAI GPT-5.5 (also on Azure OpenAI)</td><td>$5 in, $30 out per million tokens*</td><td>Alternative if the company prefers Microsoft Azure</td></tr>
-          <tr><td>AI pictures (item 2)</td><td><b>OpenAI GPT Image</b></td><td>About $0.01 (draft), $0.03–0.05 (standard), $0.13 (high quality) per picture*</td><td>Also available through Azure</td></tr>
+          <tr><td>AI pictures (item 2)</td><td><b>OpenAI GPT Image</b></td><td>About $0.01 (draft), $0.03â€“0.05 (standard), $0.13 (high quality) per picture*</td><td>Also available through Azure</td></tr>
           <tr><td rowspan="4">Voices (item 3)</td><td><b>Microsoft Azure AI Speech</b> <span class="rec">Recommended</span></td><td>$15 per million characters*; first 0.5 million characters a month free</td><td>Has Tamil and Indian English voices; one hour of narration is about 50,000 characters</td></tr>
-          <tr><td>Google Cloud Text-to-Speech</td><td>$4 (WaveNet), $16 (Neural2), $30 (Chirp 3 HD*) per million characters; first 1–4 million free</td><td>Also has Tamil and Indian English voices</td></tr>
+          <tr><td>Google Cloud Text-to-Speech</td><td>$4 (WaveNet), $16 (Neural2), $30 (Chirp 3 HD*) per million characters; first 1â€“4 million free</td><td>Also has Tamil and Indian English voices</td></tr>
           <tr><td>ElevenLabs</td><td>Creator $22, Pro $99, Scale $299 a month (121,000 / 600,000 / 1.8 million characters); yearly plans cost 10 months</td><td>The most natural, studio-like voices; fixed monthly plans</td></tr>
           <tr><td>Windows "English (India)" voices</td><td>Free</td><td>Indian English only, installed on the server (item 4)</td></tr>
-          <tr><td>Email (item 4)</td><td>The company's Microsoft 365</td><td>Free with an existing mailbox; a new Business Basic licence is about ₹125–170 per user a month*</td><td>Only one sender mailbox is needed</td></tr>
+          <tr><td>Email (item 4)</td><td>The company's Microsoft 365</td><td>Free with an existing mailbox; a new Business Basic licence is about â‚¹125â€“170 per user a month*</td><td>Only one sender mailbox is needed</td></tr>
         </tbody>
       </table></div>
 
@@ -435,27 +435,27 @@ dialog::backdrop { background: var(--scrim) }
           <tr><td>Claude Sonnet 5.5 (AI text)</td><td>$5</td><td>$9</td><td>$45</td></tr>
           <tr><td>OpenAI GPT Image (AI pictures, optional)</td><td>$2</td><td>$8</td><td>$52</td></tr>
           <tr><td>Azure AI Speech (voices)</td><td>$0 (free allowance)</td><td>$0 (free allowance)</td><td>$15</td></tr>
-          <tr class="sum"><td>Total per month</td><td>$7 (≈ ₹600)</td><td>$17 (≈ ₹1,500)</td><td>$112 (≈ ₹9,900)</td></tr>
-          <tr class="sum"><td>Total per year</td><td>$84 (≈ ₹7,400)</td><td>$204 (≈ ₹18,000)</td><td>$1,344 (≈ ₹1.18 lakh)</td></tr>
+          <tr class="sum"><td>Total per month</td><td>$7 (â‰ˆ â‚¹600)</td><td>$17 (â‰ˆ â‚¹1,500)</td><td>$112 (â‰ˆ â‚¹9,900)</td></tr>
+          <tr class="sum"><td>Total per year</td><td>$84 (â‰ˆ â‚¹7,400)</td><td>$204 (â‰ˆ â‚¹18,000)</td><td>$1,344 (â‰ˆ â‚¹1.18 lakh)</td></tr>
         </tbody>
       </table></div>
-      <p class="cnote">One-time: writing first questions for the existing 444 courses costs about $50–100 (≈ ₹4,400–8,800) with Claude Sonnet 5.5 as an overnight batch job.</p>
+      <p class="cnote">One-time: writing first questions for the existing 444 courses costs about $50â€“100 (â‰ˆ â‚¹4,400â€“8,800) with Claude Sonnet 5.5 as an overnight batch job.</p>
 
       <div class="budget">
-        <div><span class="big">US$1,500 a year</span><span>≈ ₹1.32 lakh + GST</span></div>
-        <p><b>Suggested budget to allocate.</b> It covers the high estimate for all three services plus the one-time job. Expected spend is much lower, about $300 in the first year (≈ ₹26,400). Each provider lets us set a monthly spending limit, so the bill cannot go over what is approved.</p>
+        <div><span class="big">US$1,500 a year</span><span>â‰ˆ â‚¹1.32 lakh + GST</span></div>
+        <p><b>Suggested budget to allocate.</b> It covers the high estimate for all three services plus the one-time job. Expected spend is much lower, about $300 in the first year (â‰ˆ â‚¹26,400). Each provider lets us set a monthly spending limit, so the bill cannot go over what is approved.</p>
       </div>
       <div class="opts">
-        <div class="opt"><h4>Cheapest</h4><p>Claude Haiku 5.5 + free Azure voices, no AI pictures</p><b>under $5 a month · under $60 a year</b></div>
-        <div class="opt rec-opt"><h4>Recommended</h4><p>Claude Sonnet 5.5 + GPT Image + Azure voices (Tamil included)</p><b>≈ $17 a month expected · budget $1,500 a year</b></div>
-        <div class="opt"><h4>Premium voices</h4><p>Recommended, plus ElevenLabs Pro instead of Azure voices</p><b>+ $99 a month, or + $990 a year on the yearly plan (≈ ₹87,100)</b></div>
+        <div class="opt"><h4>Cheapest</h4><p>Claude Haiku 5.5 + free Azure voices, no AI pictures</p><b>under $5 a month Â· under $60 a year</b></div>
+        <div class="opt rec-opt"><h4>Recommended</h4><p>Claude Sonnet 5.5 + GPT Image + Azure voices (Tamil included)</p><b>â‰ˆ $17 a month expected Â· budget $1,500 a year</b></div>
+        <div class="opt"><h4>Premium voices</h4><p>Recommended, plus ElevenLabs Pro instead of Azure voices</p><b>+ $99 a month, or + $990 a year on the yearly plan (â‰ˆ â‚¹87,100)</b></div>
       </div>
       <p class="cnote">Not included: hosting the LMS itself, and the development time to connect these services.</p>
     </div>
     <div class="decide">
       <h3>Decisions needed</h3>
       <ol>
-        <li>Approve a budget: about US$1,500 a year (≈ ₹1.32 lakh + GST) for the recommended option, with monthly spending limits set at each provider.</li>
+        <li>Approve a budget: about US$1,500 a year (â‰ˆ â‚¹1.32 lakh + GST) for the recommended option, with monthly spending limits set at each provider.</li>
         <li>Choose the AI provider (recommended: Anthropic Claude), and say whether AI pictures are wanted (item 2).</li>
         <li>Approve sending training content to that provider (with a check that it contains no patient data).</li>
         <li>Decide whether the free voices are enough, or a paid voice service is wanted for studio quality and Tamil (item 3).</li>
@@ -493,9 +493,9 @@ dialog::backdrop { background: var(--scrim) }
 
 <script>
 const WALK = [
-  { id: "part-1", file: "videos/walkthrough-part-1.mp4", poster: "posters/walkthrough-part-1.jpg", title: "Part 1 · Setting up Ravi's training",
+  { id: "part-1", file: "videos/walkthrough-part-1.mp4", poster: "posters/walkthrough-part-1.jpg", title: "Part 1 Â· Setting up Ravi's training",
     len: "13:16", who: "Admin", why: "Add the new hire, build a course and its exam, a question bank, a learning path and a ramp program." },
-  { id: "part-2", file: "videos/walkthrough-part-2.mp4", poster: "posters/walkthrough-part-2.jpg", title: "Part 2 · Learning, managing and reporting",
+  { id: "part-2", file: "videos/walkthrough-part-2.mp4", poster: "posters/walkthrough-part-2.jpg", title: "Part 2 Â· Learning, managing and reporting",
     len: "15:14", who: "Trainer, learner, manager and admin", why: "A classroom session, Ravi learns and passes, his manager signs him off, then records, reports and automation." },
 ];
 const GROUPS = [
@@ -515,7 +515,7 @@ const SHARE_BASE = "https://asprcmdevelopers-repo.github.io/asprcm-university-wa
 
 const $ = (id) => document.getElementById(id);
 const byId = {};
-WALK.forEach((w) => (byId[w.id] = { ...w, kicker: "A new hire's journey", label: w.title.split(" · ")[0], heading: w.title.split(" · ")[1] }));
+WALK.forEach((w) => (byId[w.id] = { ...w, kicker: "A new hire's journey", label: w.title.split(" Â· ")[0], heading: w.title.split(" Â· ")[1] }));
 SHORTS.forEach((s) => (byId[s.id] = { ...s, kicker: `Feature ${s.n}`, label: `Feature ${s.n}`, heading: s.title }));
 const ORDER = GROUPS.flatMap((g) => g.items.map((n) => (typeof n === "string" ? n : `feature-${String(n).padStart(2, "0")}`)));
 
@@ -559,7 +559,7 @@ function openVideo(id, play) {
   $("dlg-who").textContent = v.who; $("dlg-why").textContent = v.why; $("dlg-len").textContent = v.len;
   const i = ORDER.indexOf(id), nextId = ORDER[i + 1];
   $("next").hidden = !nextId;
-  if (nextId) { $("next").textContent = `Next: ${byId[nextId].heading} →`; $("next").dataset.id = nextId; }
+  if (nextId) { $("next").textContent = `Next: ${byId[nextId].heading} â†’`; $("next").dataset.id = nextId; }
   $("linkbox").hidden = true; $("copied").hidden = true;
   if (!dlg.open) dlg.showModal();
   try { history.replaceState(null, "", "#" + id); } catch (e) {}
@@ -589,7 +589,7 @@ $("copy").addEventListener("click", () => {
   catch (e) { box.focus(); box.select(); }
 });
 
-// ---- requirements status. Each line: [sub-line?] status | requirement text | optional note, or labelled parts done=â€¦ | pending=â€¦ | why=â€¦
+// ---- requirements status. Each line: [sub-line?] status | requirement text | optional note, or labelled parts done=Ã¢â‚¬Â¦ | pending=Ã¢â‚¬Â¦ | why=Ã¢â‚¬Â¦
 // status: d = done, p = pending, x = partly done. A leading ">" marks a sub-line.
 const REQ = [
   { title: "1. Content Hosting and Learning Path Management", req: "The LMS should provide the capability to host and manage multiple types of learning content within structured learning journeys.", lines: `
